@@ -10,12 +10,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP REQUIRED)
 
-add_executable(hello-openmp hello-openmp.cpp)
-target_compile_options(hello-openmp
+add_executable(example example.cpp)
+target_compile_options(example
   PUBLIC
     ${OpenMP_CXX_FLAGS}
   )
-set_target_properties(hello-openmp
+set_target_properties(example
   PROPERTIES
     LINK_FLAGS ${OpenMP_CXX_FLAGS}
   )

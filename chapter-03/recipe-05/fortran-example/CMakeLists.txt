@@ -27,12 +27,12 @@ if(DEFINED CMAKE_Fortran_COMPILER_ID AND NOT DEFINED OpenMP_Fortran_FLAGS)
     set(OPENMP_FOUND TRUE)
 endif()
 
-add_executable(dot_product dot_product.f90)
-target_compile_options(dot_product
+add_executable(example example.f90)
+target_compile_options(example
   PUBLIC
     ${OpenMP_Fortran_FLAGS}
   )
-set_target_properties(dot_product
+set_target_properties(example
   PROPERTIES
     LINK_FLAGS ${OpenMP_Fortran_FLAGS}
   )

@@ -32,26 +32,26 @@ matrix:
         - CMAKE_VERSION="3.11.0"
         - GENERATOR="Ninja"
         - BUILDFLAGS="-v"
-    - os: linux
-      addons: *1
-      env:
-        - CMAKE_VERSION="3.5.2"
-        - GENERATOR="Unix Makefiles"
-        - BUILDFLAGS="VERBOSE=1"
-    - os: linux
-      addons: *1
-      env:
-        - CMAKE_VERSION="3.5.2"
-        - GENERATOR="Ninja"
-        - BUILDFLAGS="-v"
-    - os: osx
-      env:
-        - GENERATOR="Unix Makefiles"
-        - BUILDFLAGS="VERBOSE=1"
-    - os: osx
-      env:
-        - GENERATOR="Ninja"
-        - BUILDFLAGS="-v"
+#   - os: linux
+#     addons: *1
+#     env:
+#       - CMAKE_VERSION="3.5.2"
+#       - GENERATOR="Unix Makefiles"
+#       - BUILDFLAGS="VERBOSE=1"
+#   - os: linux
+#     addons: *1
+#     env:
+#       - CMAKE_VERSION="3.5.2"
+#       - GENERATOR="Ninja"
+#       - BUILDFLAGS="-v"
+#   - os: osx
+#     env:
+#       - GENERATOR="Unix Makefiles"
+#       - BUILDFLAGS="VERBOSE=1"
+#   - os: osx
+#     env:
+#       - GENERATOR="Ninja"
+#       - BUILDFLAGS="-v"
 
 cache:
   timeout: 1000
@@ -90,4 +90,4 @@ before_script:
 
 script:
   - ./testing/dependencies/report_versions.sh
-  - pipenv run python testing/collect_tests.py 'chapter-*/recipe-*'
+  - pipenv run python testing/collect_tests.py 'chapter-14/recipe-*'

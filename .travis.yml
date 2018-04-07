@@ -22,6 +22,10 @@ matrix:
             - libboost1.55-all-dev
             - uuid-dev
             - pkg-config
+            - mingw-w64
+#           - gcc-mingw-w64-i686
+#           - g++-mingw-w64-i686
+#           - gfortran-mingw-w64-i686
       env:
         - CMAKE_VERSION="3.11.0"
         - GENERATOR="Unix Makefiles"
@@ -91,3 +95,4 @@ before_script:
 script:
   - ./testing/dependencies/report_versions.sh
   - pipenv run python testing/collect_tests.py 'chapter-14/recipe-*'
+  - ls -l $HOME/install/

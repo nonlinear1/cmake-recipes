@@ -1,5 +1,14 @@
+targets:
+  - test
+  - install
+
 # OpenMP does not work with clang
 travis-osx:
   failing_generators:
     - 'Unix Makefiles'
     - 'Ninja'
+
+travis-linux:
+  definitions:
+    - CMAKE_TOOLCHAIN_FILE: ~/cmake-recipes/chapter-14/recipe-04/cxx-example/toolchain.cmake
+    - CMAKE_INSTALL_PREFIX: ~/install/

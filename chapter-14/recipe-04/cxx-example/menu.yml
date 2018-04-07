@@ -1,5 +1,4 @@
 targets:
-  - test
   - install
 
 # OpenMP does not work with clang

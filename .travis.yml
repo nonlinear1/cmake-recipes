@@ -96,3 +96,4 @@ script:
   - ./testing/dependencies/report_versions.sh
   - pipenv run python testing/collect_tests.py 'chapter-14/recipe-*'
   - find /home/travis/build/bast/install/
+  - echo ~

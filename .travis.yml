@@ -25,10 +25,6 @@ matrix:
             - gcc-mingw-w64
             - g++-mingw-w64
             - gfortran-mingw-w64
-#           - mingw-w64
-#           - gcc-mingw-w64-i686
-#           - g++-mingw-w64-i686
-#           - gfortran-mingw-w64-i686
       env:
         - CMAKE_VERSION="3.11.0"
         - GENERATOR="Unix Makefiles"

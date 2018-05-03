@@ -164,6 +164,7 @@
 
 ### [Chapter 14: Alternatives to Makefiles and Cross-compilation](chapter-14/README.md)
 
+- [Cross-compiling a Windows binary: more realistic example](chapter-14/recipe-03/README.md)
 - [Cross-compiling a Windows binary using OpenMP](chapter-14/recipe-04/README.md)
 
 

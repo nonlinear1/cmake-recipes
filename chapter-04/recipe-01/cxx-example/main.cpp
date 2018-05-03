@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "sum_integers.hpp"
 
@@ -8,10 +9,10 @@
 int main(int argc, char *argv[]) {
 
   std::vector<int> integers;
-  for (int i = 1; i < argc; i++) {
-    integers.push_back(atoi(argv[i]));
+  for (auto i = 1; i < argc; i++) {
+    integers.push_back(std::stoi(argv[i]));
   }
-  int sum = sum_integers(integers);
+  auto sum = sum_integers(integers);
 
   std::cout << sum << std::endl;
 }

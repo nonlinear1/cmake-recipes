@@ -1,0 +1,55 @@
+# See http://msdn.microsoft.com/en-us/library/ms164311.aspx for
+# command-line options to MSBuild.
+
+# Speeding up a Visual Studio build.
+# http://blogs.msdn.com/b/vcblog/archive/2011/01/05/damn-my-vc-project-is-building-slower-in-vs2010-what-do-i-do-now-a-step-by-step-guide.aspx
+version: 'build-{build}-{branch}'
+
+platform: x86
+
+build:
+  parallel: true
+
+environment:
+  # Create expected SHELL variable for pipenv.
+  SHELL: "windows"
+  matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      MSYSTEM: MINGW64
+      GENERATOR: "MSYS Makefiles"
+      BUILDFLAGS: "VERBOSE=1"
+      CMAKEARGS: ""
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      MSYSTEM: MINGW64
+      GENERATOR: "Ninja"
+      BUILDFLAGS: "-v"
+      CMAKEARGS: ""
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      MSYSTEM: MINGW64
+      GENERATOR: "Visual Studio 14 2015"
+      BUILDFLAGS: "/verbosity:normal"
+      CMAKEARGS: "-DCMAKE_TOOLCHAIN_FILE=C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      MSYSTEM: MINGW64
+      GENERATOR: "Visual Studio 15 2017"
+      BUILDFLAGS: "/verbosity:normal"
+      CMAKEARGS: "-DCMAKE_TOOLCHAIN_FILE=C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
+
+install:
+  - set PATH=C:\Python36;%PATH%
+  - set PATH=C:\Python36\Scripts;%PATH%
+  - python --version
+  - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\install.bat'
+  - ps: .$env:APPVEYOR_BUILD_FOLDER\testing\dependencies\appveyor\install-msmpi.ps1
+  - "SetEnvMPI.cmd"
+
+# extract step has to happen before the sh.exe workaround otherwise 7z will complain
+before_build:
+  - cd C:\projects
+  - appveyor DownloadFile https://github.com/bast/cmake-recipes/archive/%APPVEYOR_REPO_COMMIT%.zip
+  - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\extract.bat'
+
+build_script:
+  - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\test.bat'
+
+deploy: off

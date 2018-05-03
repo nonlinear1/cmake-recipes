@@ -1,23 +1,21 @@
 #include <iostream>
 #include <omp.h>
-
+#include <string>
 
 int main(int argc, char *argv[]) {
   std::cout << "number of available processors: " << omp_get_num_procs()
             << std::endl;
-  std::cout << "number of threads: " << omp_get_max_threads()
-            << std::endl;
+  std::cout << "number of threads: " << omp_get_max_threads() << std::endl;
 
-  auto n = atol(argv[1]);
+  auto n = std::stol(argv[1]);
   std::cout << "we will form sum of numbers from 1 to " << n << std::endl;
 
   // start timer
   auto t0 = omp_get_wtime();
 
   auto s = 0LL;
-#pragma omp parallel for reduction(+:s)
-  for (auto i = 1; i <= n; i++)
-  {
+#pragma omp parallel for reduction(+ : s)
+  for (auto i = 1; i <= n; i++) {
     s += i;
   }
 

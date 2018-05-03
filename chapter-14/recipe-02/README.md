@@ -1,4 +1,4 @@
-# Cross-compiling a Windows binary using OpenMP
+# Cross-compiling a Windows binary with OpenMP parallelization
 
 Abstract to be written ...
 

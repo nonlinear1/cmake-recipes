@@ -1,4 +1,4 @@
-# Cross-compiling a Windows binary: more realistic example
+# Hello world example
 
 Abstract to be written ...
 

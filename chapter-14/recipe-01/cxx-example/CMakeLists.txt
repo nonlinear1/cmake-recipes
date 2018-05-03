@@ -1,8 +1,8 @@
 # set minimum cmake version
-cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
 # project name and language
-project(recipe-04 LANGUAGES CXX)
+project(recipe-01 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -13,18 +13,19 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 
-find_package(OpenMP REQUIRED)
+# define executable and its source file
+add_executable(hello-world hello-world.cpp)
 
-add_executable(example example.cpp)
-target_link_libraries(
-  example
+# we will print the system name in the code
+target_compile_definitions(
+  hello-world
   PUBLIC
-    OpenMP::OpenMP_CXX
+    "-DCMAKE_SYSTEM_NAME=\"${CMAKE_SYSTEM_NAME}\""
   )
 
 install(
   TARGETS
-    example
+    hello-world
   DESTINATION
     ${CMAKE_INSTALL_BINDIR}
   )
